@@ -1,0 +1,90 @@
+body {
+  /* height: 100vh; */
+  background: linear-gradient(45deg, #f7f7f7, #333);
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#header {
+  color: rgba(255, 174, 0, 0.6);
+}
+#main {
+  width: 100%;
+  display: flex;
+}
+#book-submit {
+  width: 30%;
+  float: left;
+  margin-left: 10%;
+  overflow: auto;
+}
+#book-info {
+  width: 70%;
+  float: right;
+  display: flex;
+  background: linear-gradient(45deg, #f7f7f7, #333);
+  flex-direction: column;
+  align-items: center;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3px;
+  text-align: center;
+}
+/* book form */
+#form {
+  width: 90%;
+}
+#form label {
+  font-size: 18px;
+}
+#form input {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  font-weight: 500;
+}
+#form .button {
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+#form .button:hover {
+  background: linear-gradient(45deg, #f7f7f7, #333);
+  outline: none;
+}
+#form #submit {
+  cursor: pointer;
+  width: 100%;
+  height: 25px;
+  outline: none;
+  border: none;
+  color: green;
+}
+#form #submit:hover {
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: linear-gradient(45deg, #f7f7f7, #333);
+}
+
+.card {
+  color: #111;
+  padding: 10px;
+  background: linear-gradient(45deg, #f7f7f7, #333);
+  border: 2px solid #333;
+}
+.btnRemove {
+  color: red;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.btnRemove:hover {
+  background: linear-gradient(45deg, #f7f7f7, #333);
+}
