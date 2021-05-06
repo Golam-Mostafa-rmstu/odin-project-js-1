@@ -1,6 +1,6 @@
 body {
   /* height: 100vh; */
-  background: linear-gradient(45deg, #f7f7f7, #333);
+  background: linear-gradient(45deg, #c28686, #290e0e);
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@ body {
   align-items: center;
 }
 #header {
-  color: rgba(255, 174, 0, 0.6);
+  color: #d4e1f0;
 }
 #main {
   width: 100%;
@@ -19,12 +19,15 @@ body {
   float: left;
   margin-left: 10%;
   overflow: auto;
+  color: rgb(207, 207, 205);
 }
 #book-info {
   width: 70%;
   float: right;
   display: flex;
   background: linear-gradient(45deg, #f7f7f7, #333);
+  color: #bb6363;
+  border-radius: 5px;
   flex-direction: column;
   align-items: center;
 }
@@ -75,10 +78,11 @@ body {
 }
 
 .card {
-  color: #111;
+  color: #f7f7f7;
   padding: 10px;
-  background: linear-gradient(45deg, #f7f7f7, #333);
+  background: linear-gradient(45deg, #c28686, #290e0e);
   border: 2px solid #333;
+  grid-column: 400px;
 }
 .btnRemove {
   color: red;

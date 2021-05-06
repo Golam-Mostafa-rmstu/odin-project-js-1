@@ -1,23 +1,13 @@
-// let myLibrary = ['book1', 'book2', 'book3', 'book4', 'book5', 'book6'];
-// function Book(title, author, page, read){
-//     this.title = title;
-//     this.author = author;
-//     this.page = page;
-//     this.read = read;
-//     this.info = function(){
-//         return `${this.title} by 
-//         ${this.author}, ${this.page} pages, ${this.read} yet`;
-//     };
-// }
+let books = [];
+class Book{
+    constructor(title, author, page, status){
+        this.title = title.value;
+        this.author = author.value;
+        this.page = page.value;
+        this.status = status;
+    }
+}
 
-// function addBookToLibrary(){
-//     //do stuff here
-// }
-// function displayBook(){
-//     //display book through loop
-// }
-// const theHobbit = new Book('Hobbit', 'H.R Jakaria',300, 'not');
-// console.log(theHobbit.info());
 
 let form = document.querySelector('#form');
 let usrTitle = document.querySelector('#title');
@@ -26,7 +16,8 @@ let usrPage = document.querySelector('#pages');;
 let btn = document.querySelector('#submit');
 let cards = document.querySelector('.cards');
 let read = document.querySelectorAll('.button');
-let btnRemove = document.querySelectorAll('.btnRemove');
+let removeBtns = [];
+let id = 0;
 let yesNo;
 
 // console.log(btn);
@@ -49,14 +40,21 @@ function createElement(yesNo){
     usrPage.value = "";
 
     let read = document.createElement('h3');
-    read.innerText = "Read: " + yesNo;
-    yesNo.value = "";
+    read.innerText = "Read: " + yesNo.innerHTML;
+    yesNo.style.background = "";
+    yesNo.style.color = "";
+    yesNo.innerHTML.value = "";
 
     let btnRemove = document.createElement('button');
     btnRemove.className = "btnRemove";
     btnRemove.innerText = "Remove";
+    btnRemove.value = id++;
+    removeBtns.push(btnRemove);
 
     formStructur(title, authorName, pageNumber, read, btnRemove, card);
+
+    //remove book from book-self
+    removeBook(removeBtns);
 }
 
 // new div under book-info
@@ -69,12 +67,22 @@ function formStructur(title, authorName, pageNumber, read, btn, card){
     cards.appendChild(card);
 }
 
+function removeBook(removeBtns){
+    // console.log(removeBtns);
+    for(let i = 0; i < removeBtns.length; i++){
+        removeBtns[i].addEventListener('click',()=>{
+            removeBtns[i].parentElement.remove();
+        })
+    }
+}
 //read or not
 for(let i = 0; i < read.length; i++){
     // console.log(read[i].innerHTML);
     read[i].addEventListener('click', (e)=>{
         e.preventDefault();
-        yesNo = read[i].innerHTML;
+        yesNo = read[i];
+        read[i].style.background = 'green';
+        read[i].style.color = 'white';
     })
 }
 
@@ -82,6 +90,12 @@ for(let i = 0; i < read.length; i++){
 btn.addEventListener('click', (e)=>{
     e.preventDefault();
     // console.log(usrAuthor);
-    if(usrPage.value && usrAuthor.value  && usrTitle.value)   createElement(yesNo);
-    else alert('Fill out the input section')
+    if(usrPage.value && usrAuthor.value  && usrTitle.value){
+        const newBook = new Book(usrTitle, usrAuthor, usrPage, yesNo.innerHTML);
+        books.push(newBook);
+        createElement(yesNo);
+    }
+    else alert('Fill out the input section');
+    
 })
+
