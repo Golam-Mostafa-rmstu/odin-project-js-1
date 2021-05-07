@@ -8,7 +8,6 @@ class Book{
     }
 }
 
-
 let form = document.querySelector('#form');
 let usrTitle = document.querySelector('#title');
 let usrAuthor = document.querySelector('#author-name');
@@ -19,20 +18,27 @@ let yes = document.querySelectorAll("button[value='yes']");
 let no = document.querySelector("button[value ='no']");
 let read = document.querySelectorAll('.button')
 let yesNo;
+let main = document.querySelector('#main');
 function restore(){
     let items = localStorage.getItem('myBook');
     items = JSON.parse(items);
-    for(let i = 0; i < items.length; i++){
-        createElement(items[i]);
-        books.push(items[i]);
-    }
+
+    if(items !== null)
+        for(let i = 0; i < items.length; i++){
+            createElement(items[i]);
+            books.push(items[i]);
+        }
 }
 
 //create all card element of a book
 function createElement(book){
+    usrAuthor.value = "";
+    usrTitle.value = "";
+    usrPage.value = "";
+
     let card = document.createElement('div');
     card.className = 'card';
-
+    
     let title = document.createElement('h2');
     title.innerText = "Title: " + book.title;
 
@@ -103,3 +109,55 @@ btn.addEventListener('click', (e)=>{
 })
 
 restore();
+
+
+let signIn = document.querySelector('#sign-in');
+
+// authentication
+var firebaseConfig = {
+apiKey: "AIzaSyDOCj0tAhrHCpNHO97OEAMxDlmI7aZtcUQ",
+authDomain: "odin-library-9df09.firebaseapp.com",
+projectId: "odin-library-9df09",
+storageBucket: "odin-library-9df09.appspot.com",
+messagingSenderId: "777488559885",
+appId: "1:777488559885:web:645fec42437b3751d90a44",
+measurementId: "G-WTJJQ2HQYG"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+const provider = new firebase.auth.GoogleAuthProvider();
+main.style.display = "none";
+
+signIn.addEventListener('click', ()=>{
+    if(signIn.innerHTML === "Sign Out"){
+        main.style.display = "none";
+        signIn.innerHTML =  "Sign In";
+    }
+    else{
+        // console.log(main);
+        firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+        var credential = result.credential;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        main.style.display = 'flex';
+        signIn.innerHTML = "Sign Out";
+        // ...
+        }).catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        });
+    }
+})
