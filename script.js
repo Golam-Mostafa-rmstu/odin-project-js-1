@@ -124,7 +124,8 @@ function formStructur(title, authorName, pageNumber, read, btn, card){
     card.appendChild(authorName);
     card.appendChild(pageNumber);
     card.appendChild(read);
-    card.appendChild(btn);
+    
+    if(btn)card.appendChild(btn);
 
     cards.appendChild(card);
 }
