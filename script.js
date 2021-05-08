@@ -133,7 +133,7 @@ function formStructur(title, authorName, pageNumber, read, btn, card){
 function removeButton(){
     for(let i = 0; i < removeBtns.length; i++){
         removeBtns[i].addEventListener('click',()=>{
-            log(removeBtns)
+            console.log(removeBtns)
         })
     }
 }
