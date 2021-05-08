@@ -103,23 +103,24 @@ function createElement(book){
     let read = document.createElement('p');
     read.innerText = "Read: " + book.status;
 
-    // let btnRemove = document.createElement('button');
-    // btnRemove.className = "btnRemove";
-    // btnRemove.innerText = "Remove";
+    let btnRemove = document.createElement('button');
+    btnRemove.className = "btnRemove";
+    btnRemove.innerText = "Remove";
     // removeBtns.push(btnRemove);
     // console.log(title, authorName, pageNumber,read,card);
-    formStructur(title, authorName, pageNumber, read, card);
+    formStructur(title, authorName, pageNumber, read, btnRemove, card);
 
     //remove book from book-self
 }
 
 // new div under book-info
-function formStructur(title, authorName, pageNumber, read, card){
+function formStructur(title, authorName, pageNumber, read, btn, card){
     card.appendChild(title);
     card.appendChild(authorName);
     card.appendChild(pageNumber);
     card.appendChild(read);
-    // card.appendChild(btn)
+    card.appendChild(btn);
+
     cards.appendChild(card);
 }
 
