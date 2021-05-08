@@ -11,6 +11,7 @@ let no = document.querySelector("button[value ='no']");
 let read = document.querySelectorAll('.button')
 let yesNo;
 let main = document.querySelector('#main');
+let removeBtns = [];
 // authentication
 const firebaseConfig = {
     apiKey: "AIzaSyDOCj0tAhrHCpNHO97OEAMxDlmI7aZtcUQ",
@@ -70,20 +71,20 @@ class Book{
         this.status = status;
     }
 }
-
+let old;
 function restore(){
     let items = localStorage.getItem('myBook');
     items = JSON.parse(items);
-
+    old = true;
     if(items !== null)
         for(let i = 0; i < items.length; i++){
-            createElement(items[i]);
+            createElement(items[i], old);
             books.push(items[i]);
         }
 }
 
 //create all card element of a book
-function createElement(book){
+function createElement(book,old){
     usrAuthor.value = "";
     usrTitle.value = "";
     usrPage.value = "";
@@ -103,10 +104,14 @@ function createElement(book){
     let read = document.createElement('p');
     read.innerText = "Read: " + book.status;
 
-    let btnRemove = document.createElement('button');
-    btnRemove.className = "btnRemove";
-    btnRemove.innerText = "Remove";
-    // removeBtns.push(btnRemove);
+    let btnRemove;
+    if(!old){
+        btnRemove = document.createElement('button');
+        btnRemove.className = "btnRemove";
+        btnRemove.innerText = "Remove";
+        removeBtns.push(btnRemove);
+    }
+    
     // console.log(title, authorName, pageNumber,read,card);
     formStructur(title, authorName, pageNumber, read, btnRemove, card);
 
@@ -151,7 +156,8 @@ btn.addEventListener('click', (e)=>{
         const newBook = new Book(usrTitle, usrAuthor, usrPage, yesNo.innerHTML);
         books.push(newBook);
         localStorage.setItem('myBook', JSON.stringify(books));
-        createElement(newBook);
+        old = false;
+        createElement(newBook, old);
     }
     else alert('Fill out the input section');
     
