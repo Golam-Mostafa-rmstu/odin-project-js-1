@@ -131,7 +131,7 @@ function formStructur(title, authorName, pageNumber, read, btn, card){
 
 for(let i = 0; i < removeBtns.length; i++){
     removeBtns[i].addEventListener('click',()=>{
-        removeBtns[i].parentElement.remove();
+        log(removeBtns)
     })
 }
 //read or not
