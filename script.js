@@ -124,16 +124,18 @@ function formStructur(title, authorName, pageNumber, read, btn, card){
     card.appendChild(authorName);
     card.appendChild(pageNumber);
     card.appendChild(read);
-    
+
     if(btn)card.appendChild(btn);
 
     cards.appendChild(card);
+    removeButton()
 }
-
-for(let i = 0; i < removeBtns.length; i++){
-    removeBtns[i].addEventListener('click',()=>{
-        log(removeBtns)
-    })
+function removeButton(){
+    for(let i = 0; i < removeBtns.length; i++){
+        removeBtns[i].addEventListener('click',()=>{
+            log(removeBtns)
+        })
+    }
 }
 //read or not
 for(let i = 0; i < read.length; i++){
