@@ -104,13 +104,10 @@ function createElement(book,old){
     let read = document.createElement('p');
     read.innerText = "Read: " + book.status;
 
-    let btnRemove;
-    if(!old){
-        btnRemove = document.createElement('button');
+    let btnRemove = document.createElement('button');
         btnRemove.className = "btnRemove";
         btnRemove.innerText = "Remove";
         removeBtns.push(btnRemove);
-    }
     
     // console.log(title, authorName, pageNumber,read,card);
     formStructur(title, authorName, pageNumber, read, btnRemove, card);
@@ -133,7 +130,8 @@ function formStructur(title, authorName, pageNumber, read, btn, card){
 function removeButton(){
     for(let i = 0; i < removeBtns.length; i++){
         removeBtns[i].addEventListener('click',()=>{
-            console.log(removeBtns)
+            removeBtns[i].parentNode.remove();
+            // removeBtns[i]
         })
     }
 }
